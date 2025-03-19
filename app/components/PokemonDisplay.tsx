@@ -1,14 +1,9 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions, Platform } from "react-native";
 import { Image } from "expo-image";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
-import { Pokemon } from "../types";
-import { FilterOption } from "./FilterButtons";
-
-interface PokemonDisplayProps {
-  pokemon: Pokemon;
-  opacity: any;
-  activeFilters: FilterOption[];
-}
+import { PokemonDisplayProps } from "../types";
+import { FilterService } from "../services/filterService";
+import { COLORS, FONT_SIZES, SPACING } from "../constants/theme";
 
 export function PokemonDisplay({ pokemon, opacity, activeFilters }: PokemonDisplayProps) {
   const { height, width } = Dimensions.get("window");
@@ -20,12 +15,9 @@ export function PokemonDisplay({ pokemon, opacity, activeFilters }: PokemonDispl
       opacity: opacity.value,
     };
   });
-
-  // Build CSS filter string from active filters
-  const filterString = activeFilters
-    .map(filter => filter.filterValue)
-    .join(" ");
-
+  
+  const filterString = FilterService.generateFilterString(activeFilters);
+    
   return (
     <Animated.View style={[styles.imageWrapper, animatedStyles]}>
       <Image
@@ -35,7 +27,7 @@ export function PokemonDisplay({ pokemon, opacity, activeFilters }: PokemonDispl
           {
             maxHeight: maxImageHeight,
             maxWidth: maxImageWidth,
-            filter: filterString || undefined,
+            ...(Platform.OS === 'web' ? { filter: filterString || undefined } : {}),
           }
         ]}
         contentFit="contain"
@@ -58,10 +50,10 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   pokemonName: {
-    fontSize: 24,
+    fontSize: FONT_SIZES.xl,
     fontWeight: "bold",
-    marginTop: 20,
-    color: "#333",
+    marginTop: SPACING.lg,
+    color: COLORS.text,
     textTransform: "capitalize",
   },
 });

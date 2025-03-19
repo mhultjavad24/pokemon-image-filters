@@ -1,8 +1,6 @@
 import { Pressable, Text, StyleSheet } from "react-native";
-
-interface GoButtonProps {
-  onPress: () => void;
-}
+import { GoButtonProps } from "../types";
+import { COLORS, FONT_SIZES, BORDER_RADIUS, SPACING, SHADOWS } from "../constants/theme";
 
 export function GoButton({ onPress }: GoButtonProps) {
   return (
@@ -20,27 +18,20 @@ export function GoButton({ onPress }: GoButtonProps) {
 
 const styles = StyleSheet.create({
   button: {
-    marginBottom: 40,
-    backgroundColor: "#FF5350", // Pokemon red
-    paddingHorizontal: 40,
-    paddingVertical: 15,
-    borderRadius: 30,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    marginBottom: SPACING.xxl,
+    backgroundColor: COLORS.pokemonRed,
+    paddingHorizontal: SPACING.xxl,
+    paddingVertical: SPACING.md,
+    borderRadius: BORDER_RADIUS.xl,
+    ...SHADOWS.medium,
   },
   buttonPressed: {
-    backgroundColor: "#D73E3A",
+    backgroundColor: COLORS.pokemonRedDark,
     transform: [{ scale: 0.98 }],
   },
   buttonText: {
-    color: "white",
-    fontSize: 20,
+    color: COLORS.white,
+    fontSize: FONT_SIZES.lg,
     fontWeight: "bold",
   },
-}); 
+});

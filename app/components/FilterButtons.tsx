@@ -1,24 +1,6 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
-
-export interface FilterOption {
-  id: string;
-  label: string;
-  filterValue: string;
-}
-
-interface FilterButtonsProps {
-  activeFilters: string[];
-  onToggleFilter: (filterId: string) => void;
-}
-
-export const FILTER_OPTIONS: FilterOption[] = [
-  { id: 'grayscale', label: 'Grayscale', filterValue: 'grayscale(1)' },
-  { id: 'sepia', label: 'Sepia', filterValue: 'sepia(1)' },
-  { id: 'invert', label: 'Invert', filterValue: 'invert(1)' },
-  { id: 'blur', label: 'Blur', filterValue: 'blur(2px)' },
-  { id: 'contrast', label: 'High Contrast', filterValue: 'contrast(2)' },
-  { id: 'hue-rotate', label: 'Color Shift', filterValue: 'hue-rotate(180deg)' },
-];
+import { FilterOption, FILTER_OPTIONS, FilterButtonsProps, FilterButtonProps } from "../types";
+import { COLORS, FONT_SIZES, BORDER_RADIUS, SPACING, SHADOWS } from "../constants/theme";
 
 export function FilterButtons({ activeFilters, onToggleFilter }: FilterButtonsProps) {
   return (
@@ -47,15 +29,7 @@ export function FilterButtons({ activeFilters, onToggleFilter }: FilterButtonsPr
   );
 }
 
-function FilterButton({ 
-  filter, 
-  isActive, 
-  onToggle 
-}: { 
-  filter: FilterOption; 
-  isActive: boolean; 
-  onToggle: (id: string) => void;
-}) {
+function FilterButton({ filter, isActive, onToggle }: FilterButtonProps) {
   return (
     <Pressable
       style={({ pressed }) => [
@@ -74,43 +48,36 @@ function FilterButton({
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginVertical: SPACING.md,
     width: '100%',
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    marginBottom: SPACING.md,
   },
   button: {
-    backgroundColor: '#E8E8E8',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 15,
+    backgroundColor: COLORS.buttonBackground,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.sm,
+    borderRadius: BORDER_RADIUS.md,
     minWidth: '30%',
     alignItems: 'center',
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.5,
-    elevation: 2,
+    ...SHADOWS.small,
   },
   buttonActive: {
-    backgroundColor: '#3B4CCA', // Pokemon blue
+    backgroundColor: COLORS.pokemonBlue,
   },
   buttonPressed: {
     opacity: 0.8,
     transform: [{ scale: 0.98 }],
   },
   buttonText: {
-    fontSize: 14,
+    fontSize: FONT_SIZES.sm,
     fontWeight: '600',
-    color: '#333',
+    color: COLORS.text,
   },
   buttonTextActive: {
-    color: 'white',
+    color: COLORS.white,
   },
 });
