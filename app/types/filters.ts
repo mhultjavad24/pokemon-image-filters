@@ -11,4 +11,5 @@ export const FILTER_OPTIONS: FilterOption[] = [
   { id: 'blur', label: 'Blur', filterValue: 'blur(2px)' },
   { id: 'contrast', label: 'High Contrast', filterValue: 'contrast(2)' },
   { id: 'hue-rotate', label: 'Color Shift', filterValue: 'hue-rotate(180deg)' },
+  { id: 'saturate', label: 'Saturate', filterValue: 'saturate(4)' },
 ];
