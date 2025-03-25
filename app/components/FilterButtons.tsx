@@ -6,7 +6,7 @@ export function FilterButtons({ activeFilters, onToggleFilter }: FilterButtonsPr
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        {FILTER_OPTIONS.slice(0, 3).map((filter) => (
+        {FILTER_OPTIONS.slice(0, 4).map((filter) => (
           <FilterButton
             key={filter.id}
             filter={filter}
@@ -16,7 +16,7 @@ export function FilterButtons({ activeFilters, onToggleFilter }: FilterButtonsPr
         ))}
       </View>
       <View style={styles.row}>
-        {FILTER_OPTIONS.slice(3).map((filter) => (
+        {FILTER_OPTIONS.slice(4).map((filter) => (
           <FilterButton
             key={filter.id}
             filter={filter}
@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.sm,
     borderRadius: BORDER_RADIUS.md,
-    minWidth: '30%',
     alignItems: 'center',
     ...SHADOWS.small,
   },
