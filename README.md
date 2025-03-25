@@ -1,13 +1,11 @@
-# Pokemon Image Filters 🐾
+# Pokemon Image Playground
 
-An [Expo](https://expo.dev) app for displaying Pokemon with customizable image filters.
+An [Expo](https://expo.dev) app for displaying Pokemon with functionality for applying customizable image filters.
 
 ## Features
 
 - Random Pokemon fetching from the PokeAPI
 - Multiple image filter options (Grayscale, Sepia, Invert, etc.)
-- Smooth animations when transitioning between Pokemon
-- Clean, minimalist UI
 
 ## Get started
 
